@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .grid-pattern {
+    background-size: 40px 40px;
+    background-image: 
+      linear-gradient(to right, #e2e8f0 1px, transparent 1px),
+      linear-gradient(to bottom, #e2e8f0 1px, transparent 1px);
+  }
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background-color: #f8fafc;
+}
+
+canvas {
+  z-index: 50 !important;
+  pointer-events: auto !important;
+  cursor: crosshair;
+}
+
+/* Ensure the background doesn't block the mouse */
+.bg-grid { 
+  pointer-events: none !important; 
+}
+
+/* This forces the drawing layer to be interactive */
+canvas {
+  touch-action: none;
+  user-select: none;
+  pointer-events: auto !important;
+  z-index: 10 !important;
+}
+
+/* This makes sure the background grid doesn't steal your clicks */
+.grid-background, svg.absolute {
+  pointer-events: none !important;
+  z-index: 1;
+}
+
+/* Keep sticky notes clickable but allow drawing around them */
+.sticky-note {
+  z-index: 20 !important;
+}
